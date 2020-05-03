@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+
+
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -34,6 +38,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,3 +133,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Cart
 CART_SESSION_ID = 'cart'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = '7tzb4z97q2sfdtzj' # Merchant ID
+BRAINTREE_PUBLIC_KEY = 'qmprvb4w8sbxgnm7' # Public Key
+BRAINTREE_PRIVATE_KEY = 'a3bc002cdea305e92b240f727ea79528' # Private key
+
+import braintree
+
+BRAINTREE_CONF = braintree.Configuration(
+braintree.Environment.Sandbox,
+BRAINTREE_MERCHANT_ID,
+BRAINTREE_PUBLIC_KEY,
+BRAINTREE_PRIVATE_KEY
+)
