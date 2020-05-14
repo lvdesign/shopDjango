@@ -1,4 +1,6 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
+
 
 # limite max 20 item le nb de item
 PRODUCT_QUANTITY_CHOICES = [(i,str(i)) for i in range(1,21)]
@@ -14,5 +16,5 @@ class CartAddProductForm(forms.Form):
     use a HiddenInput widget for this field, since you don't want to display it
     to the user.
     """
-    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES,coerce=int)
+    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES,coerce=int,label=_('Quantity'))
     override = forms.BooleanField(required=False,initial=False,widget=forms.HiddenInput)
